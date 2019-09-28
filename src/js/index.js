@@ -1,13 +1,27 @@
-import axios from 'axios';
-//https://www.food2fork.com/api/search
-//07fe92a4e51f2f32c89aff7ea7d8eecd
+import Search from './modules/Search1';
+const state = {}
 
-async function recipes(searchQuery) {
-    const key = 'b3ef3343426d3e9830968f03e3e3280d'
 
-    const res = await axios(`https://www.food2fork.com/api/search?key=${key}&q=${searchQuery}`);
-    const recipes = res.data.recipes;
-    console.log(recipes);
+const controlSearch = async () => {
+    // get the search query
+    const query = "pasta";
+    // create new search object and store it in the state
+    if (query) {
+        state.search = new Search(query);
+        // prepare the ui for the search
+
+        // get the data from the api
+        await state.search.recipes();
+
+        //display result in the ui
+        console.log(state.search.result)
+    }
+
 }
+document.querySelector(".search").addEventListener('submit', e => {
+    e.preventDefault();
+    controlSearch()
+})
 
-recipes('pasta');
+const search = new Search('rice');
+search.recipes();
