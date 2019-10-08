@@ -24,5 +24,3 @@ document.querySelector(".search").addEventListener('submit', e => {
     controlSearch()
 })
 
-const search = new Search('rice');
-search.recipes();

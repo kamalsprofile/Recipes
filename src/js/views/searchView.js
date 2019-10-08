@@ -10,6 +10,22 @@ export const getQuery = () => {
     return DOMStrings.searchQuery.value
 };
 
+const titleLimitation = (title, limit = 17) => {
+    const newTitle = [];
+    if (title.length > limit) {
+        title.split(' ').reduce((acc, cur) => {
+            if (acc + cur.length <= limit) {
+                newTitle.push(cur);
+                return acc + cur.length
+            }
+        }, 0)
+        return `${newTitle.join(' ')} . . . `
+    }
+    return title;
+}
+
+
+
 export const displayRicepes = ricepeList => {
     ricepeList.forEach(element => {
         const html = `<li>
@@ -18,7 +34,7 @@ export const displayRicepes = ricepeList => {
                 <img src="${element.image_url}" alt="${element.title}">
             </figure>
             <div class="results__data">
-                <h4 class="results__name">${element.title}</h4>
+                <h4 class="results__name">${titleLimitation(element.title)}</h4>
                 <p class="results__author">${element.publisher}</p>
             </div>
         </a>
