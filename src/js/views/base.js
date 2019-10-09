@@ -2,7 +2,8 @@ export const DOMStrings = {
     searchQuery: document.querySelector(".search__field"),
     ricepesList: document.querySelector(".results__list"),
     search: document.querySelector(".search"),
-    results: document.querySelector(".results")
+    results: document.querySelector(".results"),
+    pagination: document.querySelector(".results__pages")
 }
 
 export const getLoader = (parent) => {

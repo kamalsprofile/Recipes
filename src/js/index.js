@@ -28,3 +28,12 @@ DOMStrings.search.addEventListener('submit', e => {
     controlSearch()
 })
 
+DOMStrings.pagination.addEventListener('click', e => {
+    const btn = e.target.closest(".btn-inline");
+    const goTo = parseInt(btn.dataset.goto, 10)
+    console.log(goTo)
+    searchView.prepareUIBeforeRender();
+    searchView.displayRicepes(state.search.result, goTo);
+
+
+})
