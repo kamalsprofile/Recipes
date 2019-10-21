@@ -1,10 +1,13 @@
 import Search from './modules/Search1';
 import * as searchView from './views/searchView';
 import { DOMStrings, getLoader, removeLoader } from '../js/views/base';
+import Recipe from './modules/Recipe';
+
 
 const state = {}
 
 
+// Search controller
 const controlSearch = async () => {
     // get the search query
     const query = searchView.getQuery();
@@ -37,3 +40,22 @@ DOMStrings.pagination.addEventListener('click', e => {
 
 
 })
+
+
+//Recipe controller
+const recipeController = async () => {
+    const id = window.location.hash.replace('#', '');
+    console.log(id);
+    if (id) {
+
+        state.recipe = new Recipe(id)
+        await state.recipe.getRicepeById();
+
+        state.recipe.calculateTime();
+        state.recipe.servings();
+        console.log(state.recipe);
+    }
+}
+
+
+['hashchange', 'load'].forEach(event => { window.addEventListener(event, recipeController) });
