@@ -53,6 +53,7 @@ const recipeController = async () => {
 
         state.recipe.calculateTime();
         state.recipe.servings();
+        state.recipe.parseIngredients();
         console.log(state.recipe);
     }
 }
